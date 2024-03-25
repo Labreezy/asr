@@ -116,13 +116,8 @@ impl Emulator {
 
         self.state.set(state);
 
-        if success {
-            self.ram_base.set(ram_base);
-            true
-        } else {
-            self.ram_base.set(None);
-            false
-        }
+        self.ram_base.set(if success { ram_base } else { None });
+        success
     }
 
     /// Converts a GBA memory address to a real memory address in the emulator process' virtual memory space
